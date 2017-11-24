@@ -23,7 +23,7 @@
 
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto">
-          <%= if @current_user do %>
+          <%= if is_admin?(@current_user) do %>
           <li class="nav-item">
             <a class="nav-link" href="/users">Users</a>
           </li>

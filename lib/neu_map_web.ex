@@ -23,6 +23,7 @@ defmodule NeuMapWeb do
       import Plug.Conn
       import NeuMapWeb.Router.Helpers
       import NeuMapWeb.Gettext
+      import NeuMapWeb.Helpers
     end
   end
 
@@ -40,6 +41,7 @@ defmodule NeuMapWeb do
       import NeuMapWeb.Router.Helpers
       import NeuMapWeb.ErrorHelpers
       import NeuMapWeb.Gettext
+      import NeuMapWeb.Helpers
     end
   end
 
