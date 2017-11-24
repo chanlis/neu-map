@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :neu_map, NeuMap.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "neu_map",
+  password: "Xae2haebae",
   database: "neu_map_dev",
   hostname: "localhost",
   pool_size: 10

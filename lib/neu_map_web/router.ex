@@ -1,10 +1,12 @@
 defmodule NeuMapWeb.Router do
   use NeuMapWeb, :router
+  import NeuMapWeb.Plugs
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug :fetch_user
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -17,6 +19,9 @@ defmodule NeuMapWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/users", UserController
+    post "/sessions", SessionController, :login
+    delete "/sessions", SessionController, :logout
   end
 
   # Other scopes may use custom stacks.

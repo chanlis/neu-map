@@ -7,27 +7,65 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello NeuMap!</title>
+    <title>NEU MAP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
+   <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+     <div class="container-fluid">
+      <a class="navbar-brand" href="/">NEU MAP</a>
+      <button class="navbar-toggler" type="button"
+              data-toggle="collapse" data-target="#main-navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="navbar-nav mr-auto">
+          <%= if @current_user do %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users">Users</a>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+
+     <%= if @current_user do %>
+        <span class="text-light">
+          <%= @current_user.email %> |
+          <%= link("Logout", to: session_path(@conn, :logout), method: :delete, class: "btn btn-danger") %>
+        </span>
+      <% else %>
+        <%= form_for @conn, session_path(@conn, :login),
+              [as: "user", class: "form-inline w-150"], fn _f -> %>
+          <input type="text" placeholder="email"
+                 class="form-control" name="email">
+          <input type="password" placeholder="password"
+                 class="form-control" name="password">
+          <input type="submit" value="Log in" class="btn btn-primary">
+          <%= link "Signup", to: user_path(@conn, :new), class: "btn btn-dark" %>
+        <% end %>
+      <% end %>
+    </div>
+</nav>
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+      <div class="row">
+        <div class="col-sm-12 my-2">
+          <%= if get_flash(@conn, :info) do %>
+            <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <% end %>
+          <%= if get_flash(@conn, :error) do %>
+            <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+    <div class="container">
+    <main role="main" class="main">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

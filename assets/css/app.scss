@@ -1,0 +1,13 @@
+/* This file is for your main application css. */
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.main {
+  width: 100%;
+}
+
+#index {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
