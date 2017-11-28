@@ -6,8 +6,34 @@ defmodule NeuMap.Map do
   import Ecto.Query, warn: false
   alias NeuMap.Repo
 
+  # searches through all
+  # - building.name
+  # - building.address
+  # - building.area
+  # - area.name
+  # - service.name
+  # - service.tag.name
+  # - favorite.name (v2 feature)
+  #
+  # returns list of ["type", object]
+  def search_all(query) do
+    query = String.downcase(query)
+    building = Enum.map(search_building(query), fn(x) -> ["building", x] end)
+    area = Enum.map(search_area(query), fn(x) -> ["area", x] end)
+    service = Enum.map(search_service(query), fn(x) -> ["service", x] end)
+    
+    building ++ area ++ service
+  end
+
+  def search_all(""), do: nil
 
   alias NeuMap.Map.Area
+
+  # search area.name, returns list
+  def search_area(query) do
+    area = list_area()
+    Enum.filter(area, fn(x) -> String.contains?(String.downcase(x.name), query) end)
+  end
 
   @doc """
   Returns the list of area.
@@ -104,6 +130,12 @@ defmodule NeuMap.Map do
   end
 
   alias NeuMap.Map.Building
+
+  # search building.name and building.address, returns list
+  def search_building(query) do
+    building = list_building()
+    Enum.filter(building, fn(x) -> String.contains?(String.downcase(x.name), query) || String.contains?(String.downcase(x.address), query) || String.contains?(String.downcase(get_area!(x.area_id).name), query) end)
+  end
 
   @doc """
   Returns the list of building.
@@ -297,6 +329,13 @@ defmodule NeuMap.Map do
 
   alias NeuMap.Map.Service
 
+  # search service.name, returns list
+  def search_service(query) do
+    service = list_service()
+    Enum.filter(service, fn(x) -> String.contains?(String.downcase(x.name), query) || String.contains?(String.downcase(get_tag!(x.tag_id).name), query) end)
+  end
+
+
   @doc """
   Returns the list of service.
 
@@ -392,6 +431,13 @@ defmodule NeuMap.Map do
   end
 
   alias NeuMap.Map.Favorite
+
+  # search favorite.name, returns list
+  def search_favorite(query) do
+    favorite = list_favorite()
+    Enum.filter(favorite, fn(x) -> String.contains?(String.downcase(x.name), query) end)
+  end
+
 
   @doc """
   Returns the list of favorite.

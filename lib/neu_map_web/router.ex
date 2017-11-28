@@ -27,6 +27,8 @@ defmodule NeuMapWeb.Router do
     resources "/favorite", FavoriteController
     post "/sessions", SessionController, :login
     delete "/sessions", SessionController, :logout
+    post "/search", SearchController, :index
+    get "/search", PageController, :index
   end
 
   # Other scopes may use custom stacks.

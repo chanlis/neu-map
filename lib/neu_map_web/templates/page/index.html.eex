@@ -1,5 +1,9 @@
 <%= if @current_user do %>
-<div id="index">
+<div id="index" class="container"> 
+  <%= form_for @conn, search_path(@conn, :index), [name: :search], fn f -> %>
+    <%= text_input f, :query %>
+    <%= submit "Search", class: "btn btn-secondary" %>
+  <% end %>
 </div>
 <% else %>
 <div class="jumbotron text-center">

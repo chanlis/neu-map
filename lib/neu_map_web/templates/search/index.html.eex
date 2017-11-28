@@ -1,0 +1,50 @@
+<%= form_for @conn, search_path(@conn, :index), [name: :search], fn f -> %>
+  <%= text_input f, :query %>
+  <%= submit "Search", class: "btn btn-secondary" %>
+<% end %>
+<%= if (len = length(@results)) > 0 do %>
+<p>Showing <%= len %> results...</p>
+<% else %>
+<p>No results found</p>
+<% end %>
+<table class="table">
+  <tbody>
+  <%= for result <- @results do %>
+  <% type = List.first(result) %>
+  <% name = List.last(result).name %>
+    <tr>
+      <%= cond do %>
+        <% type == "building" -> %>
+          <td>
+            <%= link name, to: type  <> "/" <> Integer.to_string(List.last(result).id) %>
+            <br>
+            <small><%= List.last(result).address %></small>
+          </td>
+          <td class="text-right">
+            <span class="btn btn-warning btn-sm disabled"> <%= type %></span>
+          </td>
+
+        <% type == "area" -> %>
+          <td>
+            <%= link name, to: type  <> "/" <> Integer.to_string(List.last(result).id) %>
+          </td>
+          <td class="text-right">
+            <span class="btn btn-success btn-sm disabled"> <%= type %></span>
+          </td>
+
+        <% type == "service" -> %>
+          <td>
+            <%= link name, to: type  <> "/" <> Integer.to_string(List.last(result).id) %>
+            <br>
+            <small><%= List.last(result).description %></small>
+          </td>
+          <td class="text-right">
+            <span class="btn btn-dark btn-sm disabled"> <%= type %></span>
+          </td>
+        <% type == "favorite" -> %>
+        <% true -> %>
+        <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
