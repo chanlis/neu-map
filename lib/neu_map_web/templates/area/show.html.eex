@@ -1,0 +1,23 @@
+<h2>Show Area</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @area.name %>
+  </li>
+
+  <li>
+    <strong>Latitude:</strong>
+    <%= @area.latitude %>
+  </li>
+
+  <li>
+    <strong>Longitude:</strong>
+    <%= @area.longitude %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: area_path(@conn, :edit, @area) %></span>
+<span><%= link "Back", to: area_path(@conn, :index) %></span>

@@ -28,6 +28,18 @@
             <a class="nav-link" href="/users">Users</a>
           </li>
           <% end %>
+          <li class="nav-item">
+            <a class="nav-link" href="/building">Buildings</a>
+          <li>
+          <li class="nav-item">
+            <a class="nav-link" href="/area">Areas</a>
+          <li>
+          <li class="nav-item">
+            <a class="nav-link" href="/service">Services</a>
+          <li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tag">Tags</a>
+          <li>
         </ul>
       </div>
 

@@ -20,6 +20,11 @@ defmodule NeuMapWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController
+    resources "/area", AreaController
+    resources "/building", BuildingController
+    resources "/service", ServiceController
+    resources "/tag", TagController
+    resources "/favorite", FavoriteController
     post "/sessions", SessionController, :login
     delete "/sessions", SessionController, :logout
   end

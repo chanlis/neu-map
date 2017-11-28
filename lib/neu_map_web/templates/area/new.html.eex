@@ -1,0 +1,5 @@
+<h2>New Area</h2>
+
+<%= render "form.html", Map.put(assigns, :action, area_path(@conn, :create)) %>
+
+<span><%= link "Back", to: area_path(@conn, :index) %></span>

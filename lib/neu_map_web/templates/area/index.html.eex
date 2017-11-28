@@ -1,0 +1,30 @@
+<h2>Listing Area</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for area <- @area do %>
+    <tr>
+      <td><%= area.name %></td>
+      <td><%= area.latitude %></td>
+      <td><%= area.longitude %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: area_path(@conn, :show, area), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: area_path(@conn, :edit, area), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: area_path(@conn, :delete, area), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Area", to: area_path(@conn, :new) %></span>

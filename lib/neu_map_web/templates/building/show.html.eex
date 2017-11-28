@@ -1,0 +1,32 @@
+<h2>Show Building</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @building.name %>
+  </li>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @building.address %>
+  </li>
+
+  <li>
+    <strong>Latitude:</strong>
+    <%= @building.latitude %>
+  </li>
+
+  <li>
+    <strong>Longitude:</strong>
+    <%= @building.longitude %>
+  </li>
+
+  <li>
+    <strong>Area:</strong>
+    <%= @building.area_id %>
+  </li>
+</ul>
+
+<span><%= link "Edit", to: building_path(@conn, :edit, @building) %></span>
+<span><%= link "Back", to: building_path(@conn, :index) %></span>

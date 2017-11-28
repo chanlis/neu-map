@@ -1,0 +1,28 @@
+<h2>Listing Service</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for service <- @service do %>
+    <tr>
+      <td><%= service.name %></td>
+      <td><%= service.description %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: service_path(@conn, :show, service), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: service_path(@conn, :edit, service), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: service_path(@conn, :delete, service), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Service", to: service_path(@conn, :new) %></span>
