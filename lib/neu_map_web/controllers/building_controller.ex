@@ -15,6 +15,7 @@ defmodule NeuMapWeb.BuildingController do
     changeset = Map.change_building(%Building{})
     area_list = Map.list_area()
     |> Enum.map(&{&1.name, &1.id})
+    area_list = [{"none", nil}] ++ area_list
     render(conn, "new.html", changeset: changeset, area_list: area_list)
   end
 
@@ -39,6 +40,7 @@ defmodule NeuMapWeb.BuildingController do
     changeset = Map.change_building(building)
     area_list = Map.list_area()
     |> Enum.map(&{&1.name, &1.id})
+    area_list = [{"none", nil}] ++ area_list
     render(conn, "edit.html", area_list: area_list, building: building, changeset: changeset)
   end
 
