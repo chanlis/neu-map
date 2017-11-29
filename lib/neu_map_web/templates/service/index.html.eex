@@ -1,28 +1,30 @@
-<h2>Listing Service</h2>
+<h2>Listing Services</h2>
+<span><%= link "New Service", to: service_path(@conn, :new) %></span>
+<% admin = is_admin?(@current_user) %>
 
-<table class="table">
+<table class="table mt-3">
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
-
       <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for service <- @service do %>
+    <%= for service <- @service do %>
     <tr>
       <td><%= service.name %></td>
       <td><%= service.description %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: service_path(@conn, :show, service), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "View", to: service_path(@conn, :show, service), class: "btn btn-default btn-xs" %></span>
+        <%= if admin do %>
         <span><%= link "Edit", to: service_path(@conn, :edit, service), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: service_path(@conn, :delete, service), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <% end %>
       </td>
     </tr>
-<% end %>
+    <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Service", to: service_path(@conn, :new) %></span>

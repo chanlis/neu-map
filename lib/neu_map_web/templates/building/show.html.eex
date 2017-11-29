@@ -9,6 +9,18 @@
 <p><strong>Area:</strong> <%= link area.name, to: area_path(@conn, :show, area.id) %></p>
 <% end %>
 
+<%= if (services = get_services(@building.id)) do %>
+<p>
+  <strong>Services:</strong>
+  <ul>
+  <%= for service <- services do %>
+    <li style="list-style-type:square; color: <%= get_color(service) %>;">
+      <%= link service.name, to: service_path(@conn, :show, service.id) %>
+    </li>
+  <% end %>
+</p>
+<% end %>
+
 <% b_lat = Float.to_string(@building.latitude) %>
 <% b_long = Float.to_string(@building.longitude) %>
 

@@ -1,5 +1,9 @@
+<%= if is_admin?(@current_user) do %>
 <h2>Edit Area</h2>
 
 <%= render "form.html", Map.put(assigns, :action, area_path(@conn, :update, @area)) %>
 
 <span><%= link "Back", to: area_path(@conn, :index) %></span>
+<% else %>
+<p>Contact an admin to view this page.</p>
+<% end %>
