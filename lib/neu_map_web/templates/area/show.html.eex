@@ -1,23 +1,28 @@
-<h2>Show Area</h2>
+<h1 class="display-4"><%= @area.name %></h1>
+<%= if (buildings = get_buildings(@area.id)) do %>
+<p>
+  <strong>Buildings:</strong>
+  <ul>
+  <%= for building <- buildings do %>
+    <li>
+      <%= link building.name, to: building_path(@conn, :show, building.id) %>
+    </li>
+  <% end %>
+</p>
+<% end %>
 
-<ul>
+<% b_lat = Float.to_string(@area.latitude) %>
+<% b_long = Float.to_string(@area.longitude) %>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @area.name %>
-  </li>
+<iframe
+  width="100%"
+  height="600px"
+  marginwidth="0"
+  marginheight="0"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD0a1ZKKBufdDVWer1IllUZmGmjD9lLWbo&q=<%= b_lat %>,<%= b_long %>&zoom=18" allowfullscreen>
+</iframe>
 
-  <li>
-    <strong>Latitude:</strong>
-    <%= @area.latitude %>
-  </li>
-
-  <li>
-    <strong>Longitude:</strong>
-    <%= @area.longitude %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: area_path(@conn, :edit, @area) %></span>
-<span><%= link "Back", to: area_path(@conn, :index) %></span>
+<%= if is_admin?(@current_user) do %>
+<span><%= link "Edit", to: service_path(@conn, :edit, @service), class: "btn btn-primary" %></span>
+<% end %>

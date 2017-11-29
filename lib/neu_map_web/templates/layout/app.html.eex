@@ -27,7 +27,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/users">Users</a>
           </li>
-          <% end %>
           <li class="nav-item">
             <a class="nav-link" href="/building">Buildings</a>
           <li>
@@ -40,6 +39,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/tag">Tags</a>
           <li>
+          <% end %>
         </ul>
       </div>
 
@@ -74,12 +74,11 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container"
     <main role="main" class="main">
       <%= render @view_module, @view_template, assigns %>
     </main>
-
-    </div> <!-- /container -->
+    </div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
