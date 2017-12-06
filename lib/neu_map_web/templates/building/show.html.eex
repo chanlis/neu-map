@@ -9,7 +9,8 @@
 <p><strong>Area:</strong> <%= link area.name, to: area_path(@conn, :show, area.id) %></p>
 <% end %>
 
-<%= if (services = get_services(@building.id)) do %>
+<% services = get_services(@building.id) %>
+<%= if services != [] do %>
 <p>
   <strong>Services:</strong>
   <ul>

@@ -5,8 +5,6 @@ defmodule NeuMapWeb.BuildingView do
     NeuMap.Map.get_area!(id)
   end  
 
-  def get_services(nil), do: nil
-
   def get_services(building_id) do
     Enum.filter(NeuMap.Map.list_service(), fn(x) -> x.building_id == building_id end)
   end

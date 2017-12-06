@@ -1,5 +1,6 @@
 <%= if is_admin?(@current_user) do %>
 <h2>Listing Users</h2>
+<span><%= link "New User", to: user_path(@conn, :new) %></span>
 
 <table class="table">
   <thead>
@@ -22,7 +23,6 @@
   </tbody>
 </table>
 
-<span><%= link "New User", to: user_path(@conn, :new) %></span>
 <% else %>
 <p> You must be an admin to view this page. :p </p>
 <% end %>

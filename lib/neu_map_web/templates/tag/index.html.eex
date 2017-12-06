@@ -1,6 +1,8 @@
 <h2>Listing Tags</h2>
-<span><%= link "New Tag", to: tag_path(@conn, :new) %></span>
 <% admin = is_admin?(@current_user) %>
+<%= if admin do %>
+<span><%= link "New Tag", to: tag_path(@conn, :new) %></span>
+<% end %>
 
 <table class="table mt-3">
   <thead>
