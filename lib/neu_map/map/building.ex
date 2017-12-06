@@ -18,6 +18,7 @@ defmodule NeuMap.Map.Building do
   def changeset(%Building{} = building, attrs) do
     building
     |> cast(attrs, [:name, :address, :latitude, :longitude, :area_id])
-    |> validate_required([:name, :address, :latitude, :longitude])
+    |> validate_required([:name, :latitude, :longitude])
+    |> foreign_key_constraint(:area_id)
   end
 end

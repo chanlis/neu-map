@@ -17,6 +17,8 @@ defmodule NeuMap.Map.Service do
   def changeset(%Service{} = service, attrs) do
     service
     |> cast(attrs, [:name, :description, :building_id, :tag_id])
-    |> validate_required([:name, :description, :building_id, :tag_id])
+    |> validate_required([:name, :building_id, :tag_id])
+    |> foreign_key_constraint(:building_id)
+    |> foreign_key_constraint(:tag_id)
   end
 end
