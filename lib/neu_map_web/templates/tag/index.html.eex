@@ -1,6 +1,8 @@
-<h2>Listing Tag</h2>
+<h2>Listing Tags</h2>
+<span><%= link "New Tag", to: tag_path(@conn, :new) %></span>
+<% admin = is_admin?(@current_user) %>
 
-<table class="table">
+<table class="table mt-3">
   <thead>
     <tr>
       <th>Name</th>
@@ -10,19 +12,19 @@
     </tr>
   </thead>
   <tbody>
-<%= for tag <- @tag do %>
+    <%= for tag <- @tag do %>
     <tr>
       <td><%= tag.name %></td>
       <td><%= tag.color %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: tag_path(@conn, :show, tag), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "View", to: tag_path(@conn, :show, tag), class: "btn btn-default btn-xs" %></span>
+        <%= if admin do %>
         <span><%= link "Edit", to: tag_path(@conn, :edit, tag), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: tag_path(@conn, :delete, tag), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <% end %>
       </td>
     </tr>
-<% end %>
+    <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Tag", to: tag_path(@conn, :new) %></span>

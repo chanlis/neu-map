@@ -1,9 +1,19 @@
 <%= if @current_user do %>
-<div id="index" class="container"> 
+<div class="map-frame mt-5">
+<iframe
+  width="100%"
+  height="600px"
+  marginwidth="0"
+  marginheight="0"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/view?key=AIzaSyD0a1ZKKBufdDVWer1IllUZmGmjD9lLWbo&center=42.3394299,-71.0906958&zoom=16" allowfullscreen>
+</iframe>
+<div id="index" class="map-content container m-5"> 
   <%= form_for @conn, search_path(@conn, :index), [name: :search], fn f -> %>
-    <%= text_input f, :query %>
+    <%= text_input f, :query, placeholder: "Starbucks, ATM, West Village, etc", size: "40%" %>
     <%= submit "Search", class: "btn btn-secondary" %>
   <% end %>
+</div>
 </div>
 <% else %>
 <div class="jumbotron text-center">

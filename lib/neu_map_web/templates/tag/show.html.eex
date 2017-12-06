@@ -1,18 +1,13 @@
-<h2>Show Tag</h2>
-
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @tag.name %>
-  </li>
-
-  <li>
-    <strong>Color:</strong>
-    <%= @tag.color %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: tag_path(@conn, :edit, @tag) %></span>
-<span><%= link "Back", to: tag_path(@conn, :index) %></span>
+<h1 class="display-4"><%= @tag.name %></h1>
+<p><strong>Color:</strong> <%= @tag.color %></p>
+<%= if (services = get_services(@tag.id)) do %>
+<p>
+  <strong>Services:</strong>
+  <ul>
+  <%= for service <- services do %>
+    <li>
+      <%= link service.name, to: service_path(@conn, :show, service.id) %>
+    </li>
+  <% end %>
+</p>
+<% end %>

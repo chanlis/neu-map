@@ -1,30 +1,34 @@
-<h2>Listing Area</h2>
+<h2>Listing Areas</h2>
+<span><%= link "New Area", to: area_path(@conn, :new) %></span>
+<% admin = is_admin?(@current_user) %>
 
-<table class="table">
+<table class="table mt-3">
   <thead>
     <tr>
       <th>Name</th>
+      <%= if admin do %>
       <th>Latitude</th>
       <th>Longitude</th>
-
+      <% end %>
       <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for area <- @area do %>
+    <%= for area <- @area do %>
     <tr>
       <td><%= area.name %></td>
+      <%= if admin do %>
       <td><%= area.latitude %></td>
       <td><%= area.longitude %></td>
-
+      <% end %>
       <td class="text-right">
-        <span><%= link "Show", to: area_path(@conn, :show, area), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "View", to: area_path(@conn, :show, area), class: "btn btn-default btn-xs" %></span>
+        <%= if admin do %>
         <span><%= link "Edit", to: area_path(@conn, :edit, area), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: area_path(@conn, :delete, area), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      <% end %>
       </td>
     </tr>
-<% end %>
+    <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Area", to: area_path(@conn, :new) %></span>

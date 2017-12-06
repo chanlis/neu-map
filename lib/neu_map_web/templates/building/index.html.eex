@@ -1,13 +1,16 @@
-<h2>Listing Building</h2>
+<h2>Listing Buildings</h2>
+<span><%= link "New Building", to: building_path(@conn, :new) %></span>
+<% admin = is_admin?(@current_user) %>
 
-<table class="table">
+<table class="table mt-3">
   <thead>
     <tr>
       <th>Name</th>
       <th>Address</th>
+      <%= if admin do %>
       <th>Latitude</th>
       <th>Longitude</th>
-
+      <% end %>
       <th></th>
     </tr>
   </thead>
@@ -16,17 +19,18 @@
     <tr>
       <td><%= building.name %></td>
       <td><%= building.address %></td>
+      <%= if admin do %>
       <td><%= building.latitude %></td>
       <td><%= building.longitude %></td>
-
+      <% end %>
       <td class="text-right">
-        <span><%= link "Show", to: building_path(@conn, :show, building), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "View", to: building_path(@conn, :show, building), class: "btn btn-defaut btn-xs" %></span>
+        <%= if admin do %>
         <span><%= link "Edit", to: building_path(@conn, :edit, building), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: building_path(@conn, :delete, building), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <% end %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Building", to: building_path(@conn, :new) %></span>

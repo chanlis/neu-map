@@ -1,18 +1,21 @@
-<h2>Show Service</h2>
+<h1 class="display-4"><%= @service.name %></h1>
+<%= if @service.description do %>
+<p><strong>Description:</strong> <%= @service.description %></p>
+<% end %>
+<% building = get_building!(@service.building_id) %>
+<% b_lat = Float.to_string(building.latitude) %>
+<% b_long = Float.to_string(building.longitude) %>
+<p><strong>Location:</strong> <%= link building.name, to: building_path(@conn, :show, building.id) %></p>
 
-<ul>
+<iframe
+  width="100%"
+  height="600px"
+  marginwidth="0"
+  marginheight="0"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD0a1ZKKBufdDVWer1IllUZmGmjD9lLWbo&q=<%= b_lat %>,<%= b_long %>&zoom=18" allowfullscreen>
+</iframe>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @service.name %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @service.description %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: service_path(@conn, :edit, @service) %></span>
-<span><%= link "Back", to: service_path(@conn, :index) %></span>
+<%= if is_admin?(@current_user) do %>
+<span><%= link "Edit", to: service_path(@conn, :edit, @service), class: "btn btn-primary" %></span>
+<% end %>

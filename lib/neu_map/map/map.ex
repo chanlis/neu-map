@@ -62,6 +62,8 @@ defmodule NeuMap.Map do
       ** (Ecto.NoResultsError)
 
   """
+  def get_area!(nil), do: %{name: ""}
+
   def get_area!(id), do: Repo.get!(Area, id)
 
   @doc """
@@ -134,7 +136,15 @@ defmodule NeuMap.Map do
   # search building.name and building.address, returns list
   def search_building(query) do
     building = list_building()
-    Enum.filter(building, fn(x) -> String.contains?(String.downcase(x.name), query) || String.contains?(String.downcase(x.address), query) || String.contains?(String.downcase(get_area!(x.area_id).name), query) end)
+    Enum.filter(building, fn(x) -> String.contains?(String.downcase(x.name), query) || String.contains?(String.downcase(get_address(x.address)), query) || String.contains?(String.downcase(get_area!(x.area_id).name), query) end)
+  end
+
+  def get_address(address) do
+    if address do
+      address
+    else
+      ""
+    end
   end
 
   @doc """
