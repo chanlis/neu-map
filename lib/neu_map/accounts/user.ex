@@ -2,6 +2,7 @@ defmodule NeuMap.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias NeuMap.Accounts.User
+  alias NeuMap.Accounts
 
 
   schema "users" do
@@ -25,6 +26,7 @@ defmodule NeuMap.Accounts.User do
     |> validate_confirmation(:password)
     |> validate_password(:password)
     |> put_pass_hash()
+    |> validate_email(:email, message: "Email is already taken :(")
     |> validate_required([:email, :password_hash])
   end
 
@@ -35,6 +37,16 @@ defmodule NeuMap.Accounts.User do
       case valid_password?(password) do
         {:ok, _} -> []
         {:error, msg} -> [{field, options[:message] || msg}]
+      end
+    end)
+  end
+
+  def validate_email(changeset, field, options \\ []) do
+    validate_change(changeset, field, fn _, email ->
+      if !Enum.any?(Accounts.list_users(), fn(x) -> x.email == email end) do
+        []
+      else
+        [{field, options[:message]}]
       end
     end)
   end

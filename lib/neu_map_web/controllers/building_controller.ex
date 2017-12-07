@@ -1,7 +1,6 @@
 defmodule NeuMapWeb.BuildingController do
   use NeuMapWeb, :controller
 
-  alias NeuMap.Repo
   alias NeuMap.Map
   alias NeuMap.Map.Building
 

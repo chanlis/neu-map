@@ -4,7 +4,6 @@ defmodule NeuMapWeb.FavoriteController do
   alias NeuMap.Map
   alias NeuMap.Map.Favorite
   alias NeuMapWeb.FavoriteView
-  alias NeuMap.Accounts.User
 
   action_fallback NeuMapWeb.FallbackController
 

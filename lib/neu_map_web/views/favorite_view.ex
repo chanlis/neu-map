@@ -1,6 +1,5 @@
 defmodule NeuMapWeb.FavoriteView do
   use NeuMapWeb, :view
-  alias NeuMapWeb.FavoriteView
 
   def get_name(favorite) do 
     cond do
