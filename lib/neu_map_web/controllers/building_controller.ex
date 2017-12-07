@@ -4,7 +4,6 @@ defmodule NeuMapWeb.BuildingController do
   alias NeuMap.Repo
   alias NeuMap.Map
   alias NeuMap.Map.Building
-  alias NeuMap.Map.Area
 
   def index(conn, _params) do
     building = Map.list_building()
@@ -32,7 +31,9 @@ defmodule NeuMapWeb.BuildingController do
 
   def show(conn, %{"id" => id}) do
     building = Map.get_building!(id)
-    render(conn, "show.html", building: building)
+    user_id = get_session(conn, :user_id)
+    favorite = Map.get_favorite_building(building.id, user_id)
+    render(conn, "show.html", building: building, favorite: favorite)
   end
 
   def edit(conn, %{"id" => id}) do

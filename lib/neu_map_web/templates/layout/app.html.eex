@@ -41,14 +41,17 @@
           <li class="nav-item">
             <a class="nav-link" href="/tag">Tags</a>
           <li>
-          <% end %>
+          <li class="nav-item">
+            <a class="nav-link" href="/favorite">Favorites</a>
+          <li>
+         <% end %>
         </ul>
       </div>
 
      <%= if @current_user do %>
         <span class="text-light">
           <%= @current_user.email %> |
-          <%= link("Logout", to: session_path(@conn, :logout), method: :delete, class: "btn btn-danger") %>
+          <%= link("Logout", to: session_path(@conn, :logout), method: :delete, class: "btn btn-danger btn-sm") %>
         </span>
       <% else %>
         <%= form_for @conn, session_path(@conn, :login),

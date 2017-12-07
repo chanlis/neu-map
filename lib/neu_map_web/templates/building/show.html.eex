@@ -1,4 +1,15 @@
-<h1 class="display-4"><%= @building.name %></h1>
+<div>
+  <h1 class="display-4 d-inline-block"><%= @building.name %></h1>
+  <%= if @current_user do %>
+  <span class="d-inline-block float-right p-3">
+    <%= if @favorite do %>
+      <%= link "Remove from favorites!", to: favorite_path(@conn, :delete, @favorite), method: :delete, class: "btn btn-danger" %>
+    <% else %>
+      <%= link "Add to favorites!", to: favorite_path(@conn, :create, %{"name" => nil, "building_id" => @building, "service_id" => nil, "user_id" => @current_user}), method: :post, class: "btn btn-warning" %>
+    <% end %>
+  </span>
+  <% end %>
+</div>
 
 <%= if @building.address do %>
 <p><strong>Address:</strong> <%= @building.address %></p>

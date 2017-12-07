@@ -444,8 +444,8 @@ defmodule NeuMap.Map do
 
   # search favorite.name, returns list
   def search_favorite(query) do
-    favorite = list_favorite()
-    Enum.filter(favorite, fn(x) -> String.contains?(String.downcase(x.name), query) end)
+    favorites = list_favorite()
+    Enum.filter(favorites, fn(x) -> String.contains?(String.downcase(x.name), query) end)
   end
 
 
@@ -458,8 +458,13 @@ defmodule NeuMap.Map do
       [%Favorite{}, ...]
 
   """
-  def list_favorite do
+  def list_favorite() do
     Repo.all(Favorite)
+  end
+
+  def list_favorite(user_id) do
+    favorites = list_favorite()
+    Enum.filter(favorites, fn(x) -> x.user_id == user_id end)
   end
 
   @doc """
@@ -476,6 +481,16 @@ defmodule NeuMap.Map do
       ** (Ecto.NoResultsError)
 
   """
+  def get_favorite_building(building_id, user_id) do
+    favorites = list_favorite()
+    Enum.find(favorites, fn(x) -> x.user_id == user_id && x.building_id == building_id end)
+  end
+
+  def get_favorite_service(service_id, user_id) do
+    favorites = list_favorite()
+    Enum.find(favorites, fn(x) -> x.user_id == user_id && x.service_id == service_id end)
+  end
+  
   def get_favorite!(id), do: Repo.get!(Favorite, id)
 
   @doc """

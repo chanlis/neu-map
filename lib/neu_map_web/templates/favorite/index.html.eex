@@ -1,0 +1,34 @@
+<%= if @current_user do %>
+<h2>Listing Favorites</h2>
+<small>View buildings or services and add them to your favorites!</small>
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <%= if !Enum.empty?(@favorite) do %>
+      <th>Name</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <%= for favorite <- @favorite do %>
+    <tr>
+      <td>
+        <%= get_name(favorite) %>
+        <a class="btn" style="border-radius: 50%" href="<%= favorite_path(@conn, :edit, favorite) %>">&#9998</a>
+      </td>
+      <td class="text-right">
+        <%= link "View", to: get_path(favorite), class: "btn mr-1" %>
+        <%= if favorite.building_id do %>
+        <span class="btn btn-warning btn-sm disabled">building</span>
+        <% else %>
+        <span class="btn btn-secondary btn-sm disabled">service</span>
+        <% end %>
+        <%= link "x", to: favorite_path(@conn, :delete, favorite), method: :delete, class: "btn-outline-danger btn-sm ml-1", style: "border-radius: 50%" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+<p>Must be logged in to view this page. hehe</p>
+<% end %>

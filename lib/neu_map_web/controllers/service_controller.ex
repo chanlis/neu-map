@@ -29,7 +29,9 @@ defmodule NeuMapWeb.ServiceController do
 
   def show(conn, %{"id" => id}) do
     service = Map.get_service!(id)
-    render(conn, "show.html", service: service)
+    user_id = get_session(conn, :user_id)
+    favorite = Map.get_favorite_service(service.id, user_id)
+    render(conn, "show.html", service: service, favorite: favorite)
   end
 
   def edit(conn, %{"id" => id}) do

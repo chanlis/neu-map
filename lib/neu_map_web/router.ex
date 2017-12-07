@@ -19,7 +19,7 @@ defmodule NeuMapWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/users", UserController
+    resources "/user", UserController
     resources "/area", AreaController
     resources "/building", BuildingController
     resources "/service", ServiceController
