@@ -15,8 +15,8 @@
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td class="text-right">
-        <span><%= link "view profile", to: user_path(@conn, :show, user), class: "btn btn-primary" %></span>
-        <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-primary btn-sm" %></span>
+        <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-sm" %></span>
       </td>
     </tr>
 <% end %>
