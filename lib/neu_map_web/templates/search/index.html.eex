@@ -42,7 +42,26 @@
             <span class="btn btn-dark btn-sm disabled"> <%= type %></span>
           </td>
         <% type == "favorite" -> %>
-        <% true -> %>
+          <% favorite = List.last(result) %>
+          <td>
+            <%= link name, to: NeuMapWeb.FavoriteView.get_path(favorite) %>
+            <%= if favorite.service_id do %>
+            <br>
+            <small><%= NeuMap.Map.get_service!(favorite.service_id).description %></small>
+          </td>
+          <td class="text-right">
+            &#9733
+            <span class="btn btn-dark btn-sm disabled ml-3">service</span>
+          </td>
+            <% else %>
+            <br>
+            <small><%= NeuMap.Map.get_building!(favorite.building_id).address %></small>
+          </td>
+          <td class="text-right">
+            &#9733
+            <span class="btn btn-warning btn-sm disabled ml-3">building</span>
+          </td>
+            <% end %>
         <% end %>
     </tr>
   <% end %>

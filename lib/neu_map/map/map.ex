@@ -16,16 +16,17 @@ defmodule NeuMap.Map do
   # - favorite.name (v2 feature)
   #
   # returns list of ["type", object]
-  def search_all(query) do
+  def search_all(query, user_id) do
     query = String.downcase(query)
     building = Enum.map(search_building(query), fn(x) -> ["building", x] end)
     area = Enum.map(search_area(query), fn(x) -> ["area", x] end)
     service = Enum.map(search_service(query), fn(x) -> ["service", x] end)
+    favorite = Enum.map(search_favorite(query, user_id), fn(x) -> ["favorite", x] end)
     
-    building ++ area ++ service
+    favorite ++ building ++ area ++ service
   end
 
-  def search_all(""), do: nil
+  def search_all("", user_id), do: nil
 
   alias NeuMap.Map.Area
 
@@ -104,7 +105,6 @@ defmodule NeuMap.Map do
 
   @doc """
   Deletes a Area.
-
   ## Examples
 
       iex> delete_area(area)
@@ -443,11 +443,10 @@ defmodule NeuMap.Map do
   alias NeuMap.Map.Favorite
 
   # search favorite.name, returns list
-  def search_favorite(query) do
-    favorites = list_favorite()
+  def search_favorite(query, user_id) do
+    favorites = list_favorite(user_id)
     Enum.filter(favorites, fn(x) -> String.contains?(String.downcase(x.name), query) end)
   end
-
 
   @doc """
   Returns the list of favorite.

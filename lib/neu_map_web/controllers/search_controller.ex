@@ -4,7 +4,8 @@ defmodule NeuMapWeb.SearchController do
   alias NeuMap.Map
 
   def index(conn, %{"query" => query}) do 
-    results = Map.search_all(query)
+    user = get_session(conn, :user_id)
+    results = Map.search_all(query, user)
     render conn, "index.html", results: results
   end
 end
