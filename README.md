@@ -1,12 +1,15 @@
 # NEU MAP
 GITHUB REPO: https://github.com/chanlis/neu-map/
+
 WEBPAGE: http://neumap.lisachan.info/
+
 Web application built using Elixir and Phoenix, and Google Maps API serving as an interactive Northeastern University campus map. The application provides a database of all buildings (academic, service, residential, parking) and their locations. The purpose of this project is to assist in navigating around campus through easy search methods (by address, building name, service offered, etc), an improvement to the [current campus map](https://www.northeastern.edu/campusmap/map/index.html) provided on Northeastern’s website. Using Google Maps API to create a web app that allows users to enter into a search bar either a building name, building street address, building area name, area name, service name, service tag name, or favorites name which will show the building’s pinpointed latitude and longitude if the query is successful.
 
 ## Demo
 Visit the [webpage](http://neumap.lisachan.info/) and login with the following credentials:
 - email: test@example.com
 - password: neumaptest
+
 For access to an admin user, email [chan.lis@husky.neu,edu](mailto:chan.lis@husky.neu.edu) with a request.
 
 ## Running this locally
@@ -18,9 +21,13 @@ For access to an admin user, email [chan.lis@husky.neu,edu](mailto:chan.lis@husk
 - Run `mix deps.get`
 - Setup your dev database with:
 `sudo su - postgres
+
 createuser -d -P neu_map
+
 Enter password: Xae2haebae
+
 Again: Xae2haebae
+
 exit`
 - Create the database with `mix ecto.create`
 - Add migrations `mix ecto.migrate`
