@@ -19,7 +19,7 @@
 <% else %>
 <div class="jumbotron text-center">
   <h2 class="display-2">NEU MAP</h2>
-  <p class="lead">Search through Northeastern University building names, addresses, or services using this interactive navigation tool and we'll tell you how to get there.</p>
+  <p class="lead">Search through Northeastern University building names, addresses, or services using this interactive navigation tool and we'll show you where it is on the map. Like what you searched? Add it to you favorites.</p>
   <hr class="my-4">
   <p><%= link "Signup", to: user_path(@conn, :new) %> or Login above to get started.</p>
 </div>
