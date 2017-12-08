@@ -35,7 +35,7 @@ View the web app on `localhost:4000`.
 
 ## Functionalities Implemented
 CRUD functionalities can be found on each object User, Area, Building, Service, Tag, and Favorite.
---
+
 Sign up as new user:
 - Visit application.
 - Click "signup" button on navigation bar.
