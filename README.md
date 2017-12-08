@@ -20,15 +20,13 @@ For access to an admin user, email [chan.lis@husky.neu,edu](mailto:chan.lis@husk
 - cd into this `neu-map` repository. 
 - Run `mix deps.get`
 - Setup your dev database with:
-`sudo su - postgres
-
+````
+sudo su - postgres 
 createuser -d -P neu_map
-
 Enter password: Xae2haebae
-
 Again: Xae2haebae
-
-exit`
+exit
+````
 - Create the database with `mix ecto.create`
 - Add migrations `mix ecto.migrate`
 - Assuming the path to the csv files in `priv/repo/seed.exs` are correct, run `mix run priv/repo/seed.exs`
