@@ -5,7 +5,7 @@ defmodule NeuMapWeb.BuildingController do
   alias NeuMap.Map.Building
 
   def index(conn, _params) do
-    building = Map.list_building()
+    building = Enum.sort_by(Map.list_building(), fn(x) -> String.downcase(x.name) end)
     render(conn, "index.html", building: building)
   end
 

@@ -5,7 +5,7 @@ defmodule NeuMapWeb.ServiceController do
   alias NeuMap.Map.Service
 
   def index(conn, _params) do
-    service = Map.list_service()
+    service = Enum.sort_by(Map.list_service(), fn(x) -> String.downcase(x.name) end)
     render(conn, "index.html", service: service)
   end
 

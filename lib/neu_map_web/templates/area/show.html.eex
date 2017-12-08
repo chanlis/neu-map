@@ -24,5 +24,5 @@
 </iframe>
 
 <%= if is_admin?(@current_user) do %>
-<span><%= link "Edit", to: service_path(@conn, :edit, @service), class: "btn btn-primary" %></span>
+<span><%= link "Edit", to: area_path(@conn, :edit, @area), class: "btn btn-primary" %></span>
 <% end %>

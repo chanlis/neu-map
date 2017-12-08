@@ -5,7 +5,7 @@ defmodule NeuMapWeb.AreaController do
   alias NeuMap.Map.Area
 
   def index(conn, _params) do
-    area = Map.list_area()
+    area = Enum.sort_by(Map.list_area(), fn(x) -> String.downcase(x.name) end)
     render(conn, "index.html", area: area)
   end
 

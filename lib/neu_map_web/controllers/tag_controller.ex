@@ -5,7 +5,7 @@ defmodule NeuMapWeb.TagController do
   alias NeuMap.Map.Tag
 
   def index(conn, _params) do
-    tag = Map.list_tag()
+    tag = Enum.sort_by(Map.list_tag(), fn(x) -> String.downcase(x.name) end)
     render(conn, "index.html", tag: tag)
   end
 
