@@ -6,7 +6,7 @@ defmodule NeuMap.Repo.Migrations.CreateService do
       add :name, :string
       add :description, :string
       add :building_id, references(:building, on_delete: :delete_all)
-      add :tag_id, references(:tag, on_delete: :nilify_all)
+      add :tag_id, references(:tag, on_delete: :delete_all)
 
       timestamps()
     end
