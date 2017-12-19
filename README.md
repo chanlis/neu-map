@@ -10,7 +10,7 @@ Visit the [webpage](http://neumap.lisachan.info/) and login with the following c
 - email: test@example.com
 - password: neumaptest
 
-For access to an admin user, email [chan.lis@husky.neu,edu](mailto:chan.lis@husky.neu.edu) with a request.
+For access to an admin user, email [chan.lis@husky.neu.edu](mailto:chan.lis@husky.neu.edu) with a request.
 
 ## Running this locally
 - Install the latest nodejs using nvm. Follow the directions here: [Node Version Manager](https://github.com/creationix/nvm).

@@ -445,7 +445,13 @@ defmodule NeuMap.Map do
   # search favorite.name, returns list
   def search_favorite(query, user_id) do
     favorites = list_favorite(user_id)
-    Enum.filter(favorites, fn(x) -> String.contains?(String.downcase(x.name), query) end)
+    Enum.filter(favorites, fn(x) -> String.contains?(String.downcase(
+      if x.name do
+        x.name
+      else
+        ""
+      end
+    ), query) end)
   end
 
   @doc """
