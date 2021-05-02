@@ -1,7 +1,7 @@
 # NEU MAP
 GITHUB REPO: https://github.com/chanlis/neu-map/
 
-WEBPAGE: http://neumap.lisachan.info/
+WEBPAGE: https://shrouded-plateau-70973.herokuapp.com/
 
 Web application built using Elixir and Phoenix, and Google Maps API serving as an interactive Northeastern University campus map. The application provides a database of all buildings (academic, service, residential, parking) and their locations. The purpose of this project is to assist in navigating around campus through easy search methods (by address, building name, service offered, etc), an improvement to the [current campus map](https://www.northeastern.edu/campusmap/map/index.html) provided on Northeastern’s website. Using Google Maps API to create a web app that allows users to enter into a search bar either a building name, building street address, building area name, area name, service name, service tag name, or favorites name which will show the building’s pinpointed latitude and longitude if the query is successful.
 
